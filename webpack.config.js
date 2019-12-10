@@ -3,10 +3,6 @@ const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
-  plugins: [],
-};
-
-module.exports = {
   entry: './src/index.tsx',
   mode: 'development',
   module: {
