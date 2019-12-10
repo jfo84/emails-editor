@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import randomWords from 'random-words';
 
 import { ReduxState, Dispatch } from '../redux/reducers/types';
 import * as constants from '../redux/constants';
@@ -20,8 +21,10 @@ class EmailsButtons extends Component<Props, State> {
 
   handleAddClick = (event: MouseEvent): void => {
     if (event.target instanceof HTMLButtonElement) {
-      // TODO: Generate random email
-      this.props.addEmail(event.target.value);
+      const user = randomWords();
+      const domain = randomWords();
+
+      this.props.addEmail(`${user}@${domain}.com`);
     }
   };
 

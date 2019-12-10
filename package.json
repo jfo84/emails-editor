@@ -21,6 +21,7 @@
     "preact": "^8.5.3",
     "preact-context": "^1.1.4",
     "preact-redux": "^2.1.0",
+    "random-words": "^1.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

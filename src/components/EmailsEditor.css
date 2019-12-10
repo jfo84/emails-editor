@@ -1,14 +1,15 @@
 .emails-editor-container {
   display: inline-flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  align-content: flex-start;
+  overflow: auto;
 
   background-color: #fff;
   border: 1px solid #c3c2cf;
   border-radius: 5px;
   width: 100%;
-  min-height: 90px;
-  max-height: 40px;
+  height: 90px;
+
   padding: 7px 4px 3px 6px;
 }
 
@@ -50,9 +51,9 @@
 
   height: 24px;
   width: 10px;
+  margin-right: -1px;
   vertical-align: middle;
   cursor: pointer;
-  margin-right: -1px;
 }
 
 .email-remove::before {
@@ -62,7 +63,8 @@
 .email-input {
   user-select: text;
 
-  font-weight: lighter;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
   background-color: #fff;
 
   border-width: 0px;
@@ -72,4 +74,8 @@
   box-shadow: none;
 
   height: 24px;
+}
+
+.email-input::placeholder {
+  color: #c9c9c9;
 }
