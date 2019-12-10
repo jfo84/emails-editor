@@ -1,3 +1,4 @@
+import { deepCopy } from '../../utils';
 import * as constants from '../constants';
 
 import { Action, EmailState } from './types';
@@ -18,8 +19,7 @@ const email = (
     case constants.EMAIL_REMOVE: {
       const { list } = state;
 
-      // Copy
-      let newList = JSON.parse(JSON.stringify(list));
+      let newList = deepCopy(list);
       // Remove element by index
       newList.splice(payload.index, 1);
 
