@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Polling Tool</title>
+</head>
+
+<body>
+  <div id="emails-editor"></div>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <script src="../dist/bundle.js"></script>
+  <script>
+    const container = document.querySelector("#emails-editor");
+
+    const editor = EmailsEditor({ container, initialList: ['jford8820@gmail.com'] });
+    editor.subscribeToEmailList(function(previousList, currentList) {
+      console.log(`Previous List: ${previousList}. Current List: ${currentList}.`);
+    });
+
+    const list = editor.getEmailList();
+    list.push('foo@bar.com');
+    editor.setEmailList(list);
+  </script>
+</body>
+
+</html>

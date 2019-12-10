@@ -1,0 +1,123 @@
+body {
+  padding: 1%;
+  font: 1/1.5em sans-serif;
+  text-align: center;
+}
+
+.modal-title {
+  font-weight: lighter;
+  padding: 15px;
+  margin-bottom: 0;
+  border-bottom: 1px solid gray;
+}
+
+.modal {
+  opacity: 1;
+  visibility: visible;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  background: rgba(0,0,0, .9);
+  transition: opacity .25s ease;
+}
+
+.bg-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.inner-modal {
+  transition: top .25s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  background: #fff;
+  border-radius: 5px;
+  padding: 1em 2em;
+  width: 70%;
+  height: 70%;
+  max-height: calc(100vh - 275px);
+}
+
+@media screen and (max-width: 768px) {
+  .inner-modal {
+    width: 90%;
+    height: 90%;
+    box-sizing: border-box;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  width: 1.1em;
+  height: 1.1em;
+  cursor: pointer;
+}
+
+.close-modal:after,
+.close-modal:before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 1.5em;
+  background: #ccc;
+  display: block;
+  transform: rotate(45deg);
+  left: 50%;
+  margin: -3px 0 0 -1px;
+  top: 0;
+}
+
+.close-modal:hover:after,
+.close-modal:hover:before {
+  background: #aaa;
+}
+
+.close-modal:before {
+  transform: rotate(-45deg);
+}
+
+.share-button {
+  cursor: pointer;
+  background: #27ae60;
+  display: inline-block;
+  padding: .5em 1em;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.share-button:hover,
+.share-button:focus {
+  background: #2ecc71;
+}
+
+.share-button:active {
+  background: #27ae60;
+  box-shadow: 0 1px 2px rgba(0,0,0, .2) inset;
+}
+
+.share-button--blue {
+  background: #2980b9;
+}
+
+.share-button--blue:hover,
+.share-button--blue:focus {
+  background: #3498db;
+}
+
+.share-button--blue:active {
+  background: #2980b9;
+}

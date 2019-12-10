@@ -1,0 +1,45 @@
+{
+  "name": "emails-editor",
+  "version": "0.0.1",
+  "description": "Emails Editor",
+  "main": "src/index.tsx",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "NODE_ENV=production webpack --display-modules",
+    "start": "open public/index.html",
+    "start:windows": "start public/index.html",
+    "start:dev": "webpack-dev-server"
+  },
+  "author": "jfo84",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "preact": "^8.5.3",
+    "preact-context": "^1.1.4",
+    "preact-redux": "^2.1.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/plugin-transform-react-jsx": "^7.7.4",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/redux-logger": "^3.0.7",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "style-loader": "^1.0.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
