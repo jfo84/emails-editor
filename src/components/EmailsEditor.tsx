@@ -73,9 +73,7 @@ class EmailsEditor extends Component<Props, State> {
             <div
               class='email-remove'
               onClick={() => removeEmail(index)}
-            >
-              X
-            </div>
+            ></div>
           </div>
         ))}
         <input

@@ -1,0 +1,27 @@
+.emails-buttons-container {
+  display: flex;
+}
+
+.add-button, .count-button {
+  flex: 0 auto;
+  box-sizing: border-box;
+
+  font-weight: lighter;
+  font-size: 16px;
+
+  color: #fff;
+  background-color: #4262FF;
+
+  height: 44px;
+  min-width: 100px;
+  border-radius: 7px;
+  padding: 12px 16px 14px;
+  margin-right: 17px;
+}
+
+.emails-buttons-count {
+  flex: 0 auto;
+  align-self: flex-end;
+
+  font-weight: lighter;
+}
