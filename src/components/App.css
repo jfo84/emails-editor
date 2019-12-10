@@ -47,7 +47,7 @@ body {
   border-radius: 5px;
   width: 562px;
   /* width: 55%; */
-  height: 318px;
+  height: 320px;
   /* height: 35%; */
   max-height: calc(100vh - 425px);
 }
@@ -60,12 +60,4 @@ body {
 
 .bottom-modal-section {
   padding: 25px 54px 34px 55px;
-}
-
-@media screen and (max-width: 768px) {
-  .inner-modal {
-    width: 90%;
-    height: 90%;
-    box-sizing: border-box;
-  }
 }
