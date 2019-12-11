@@ -8,7 +8,7 @@ First run `npm install`
 
 ### npm run build
 
-This is a vanilla webpack build. The results are saved in `dist/bundle.js`
+This is a vanilla webpack build. The results are saved in `dist/emails-editor.js`
 
 ### npm run start
 

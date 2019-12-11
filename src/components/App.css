@@ -45,11 +45,12 @@ body {
   overflow: auto;
   background: #fff;
   border-radius: 5px;
-  width: 562px;
-  /* width: 55%; */
-  height: 320px;
-  /* height: 35%; */
-  max-height: calc(100vh - 425px);
+  max-width: 562px;
+  width: 60%;
+  min-width: 320px;
+  max-height: 320px;
+  height: 45%;
+  min-height: 200px;
 }
 
 .top-modal-section {

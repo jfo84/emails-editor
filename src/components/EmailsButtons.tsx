@@ -13,51 +13,38 @@ type Props = {
   addEmail: (email: string) => void;
 };
 
-type State = { ephemeralCount: number };
-
-class EmailsButtons extends Component<Props, State> {
-  state = {
-    ephemeralCount: 0,
-  };
-
-  handleAddClick = (event: MouseEvent): void => {
+const EmailsButtons = ({ emailCount, addEmail }: Props) => {
+  const handleAddClick = (event: MouseEvent): void => {
     if (event.target instanceof HTMLButtonElement) {
       const user: string = randomWords();
       const domain: string = randomWords();
 
-      this.props.addEmail(`${user}@${domain}.com`);
+      addEmail(`${user}@${domain}.com`);
     }
   };
 
-  handleCountClick = (event: MouseEvent): void => {
+  const handleCountClick = (event: MouseEvent): void => {
     if (event.target instanceof HTMLButtonElement) {
-      this.setState({ ephemeralCount: this.props.emailCount });
+      window.alert(`The current email count is ${emailCount}`);
     }
   };
 
-  render() {
-    const { ephemeralCount } = this.state;
-
-    return (
-      <div class='emails-buttons-container'>
-        <button
-          class='add-button'
-          onClick={this.handleAddClick}
-        >
-          Add email
-        </button>
-        <button
-          class='count-button'
-          onClick={this.handleCountClick}
-        >
-          Get emails count
-        </button>
-        <div class='emails-buttons-count'>
-          {ephemeralCount ? `Count: ${ephemeralCount}` : null}
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div class='emails-buttons-container'>
+      <button
+        class='add-button'
+        onClick={handleAddClick}
+      >
+        Add email
+      </button>
+      <button
+        class='count-button'
+        onClick={handleCountClick}
+      >
+        Get emails count
+      </button>
+    </div>
+  );
 }
 
 const mapStateToProps = (state: ReduxState) => ({

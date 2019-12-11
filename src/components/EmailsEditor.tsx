@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
+import { validateEmail } from '../utils';
 import { ReduxState, Dispatch } from '../redux/reducers/types';
 import * as constants from '../redux/constants';
 
@@ -67,15 +68,21 @@ class EmailsEditor extends Component<Props, State> {
   
     return (
       <div class='emails-editor-container'>
-        {list.map((email, index) => (
-          <div class='email-container'>
-            <div class='email-text'>{email}</div>
-            <div
-              class='email-remove'
-              onClick={() => removeEmail(index)}
-            ></div>
-          </div>
-        ))}
+        {list.map((email, index) => {
+          const textClass = validateEmail(email)
+            ? 'email-text'
+            : 'email-text invalid';
+
+          return (
+            <div class='email-container'>
+              <div class={textClass}>{email}</div>
+              <div
+                class='email-remove'
+                onClick={() => removeEmail(index)}
+              ></div>
+            </div>
+          );
+        })}
         <input
           type='email'
           class='email-input'

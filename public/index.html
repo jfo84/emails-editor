@@ -13,17 +13,17 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <script src="./bundle.js"></script>
+  <script src="emails-editor.js"></script>
   <script>
     const container = document.querySelector("#emails-editor");
 
-    const editor = EmailsEditor({ container, initialList: ['jford8820@gmail.com'] });
+    const editor = EmailsEditor({ container, initialList: ["jford8820@gmail.com"] });
     editor.subscribeToEmailList(function(previousList, currentList) {
       console.log(`Previous List: ${previousList}. Current List: ${currentList}.`);
     });
 
     const list = editor.getEmailList();
-    list.push('foo@bar.com');
+    list.push("foo@bar.com");
     editor.setEmailList(list);
   </script>
 </body>

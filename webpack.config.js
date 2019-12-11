@@ -32,7 +32,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
-    filename: 'bundle.js',
+    filename: 'emails-editor.js',
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
