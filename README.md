@@ -1,6 +1,6 @@
 # Emails Editor
 
-[Heroku Link](https://emails-editor.herokuapp.com/);
+[Heroku Link](https://emails-editor.herokuapp.com/)
 
 This project is designed to be a small library for adding a modal to an existing application for sharing content to a set of email addresses. It uses TypeScript, Webpack for the build pipeline, Preact for DOM rendering, and Redux for state management. The production bundle size is ~100KB.
 
@@ -24,7 +24,7 @@ The modal component can be controlled via `Window` with the following API:
 | `getEmailList` | `() => string[]`
 | `setEmailList` | `(emailList: string[]) => Redux.Action`
 | `subscribeToEmailList` | `((pl: string[], cl: string[]) => void) => Redux.Unsubscribe`
-| `close` | `() => Element | void`
+| `close` | `() => Element \| void`
 
 
 The `index.html` file contains an example script that runs the following:
