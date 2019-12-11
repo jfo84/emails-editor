@@ -8,7 +8,7 @@ This project is designed to be a small library for adding a modal to an existing
 
 The modal component can be controlled via `Window` with the following API:
 
-## `EmailsEditor`
+### `EmailsEditor`
 `({ container: Element, initialList: string[] }) => Editor`
 
 | Name | Type | Description
