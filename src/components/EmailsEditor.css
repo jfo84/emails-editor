@@ -74,6 +74,7 @@
   box-shadow: none;
 
   height: 24px;
+  margin-left: 2px;
 }
 
 .email-input::placeholder {

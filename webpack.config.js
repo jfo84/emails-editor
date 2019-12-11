@@ -36,9 +36,9 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'public/'),
+    contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
-    publicPath: 'http://localhost:3000/dist/',
+    publicPath: 'http://localhost:3000/',
     hotOnly: true,
   },
 };
