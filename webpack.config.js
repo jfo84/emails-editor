@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
@@ -21,6 +22,13 @@ module.exports = {
     ],
   },
   resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'] },
+  plugins: [
+    new CompressionPlugin(),
+    new CopyPlugin([
+      { from: 'public', to: path.resolve(__dirname, 'dist/') },
+    ]),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
@@ -33,8 +41,4 @@ module.exports = {
     publicPath: 'http://localhost:3000/dist/',
     hotOnly: true,
   },
-  plugins: [
-    new CompressionPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ]
 };
