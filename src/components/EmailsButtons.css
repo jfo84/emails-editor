@@ -19,10 +19,3 @@
   padding: 12px 16px 14px;
   margin-right: 17px;
 }
-
-.emails-buttons-count {
-  flex: 0 auto;
-  align-self: flex-end;
-
-  font-weight: lighter;
-}
