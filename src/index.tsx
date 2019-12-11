@@ -7,7 +7,7 @@ import logger from 'redux-logger';
 import * as constants from './redux/constants';
 import reducers from './redux/reducers';
 import initialState from './redux/reducers/initialState';
-import { ReduxState } from './redux/reducers/types';
+import { ReduxState, Action, Unsubscribe } from './redux/reducers/types';
 
 import App from './components/App';
 import { deepCopy, unmount } from './utils';
@@ -23,7 +23,14 @@ type Props = {
   initialList: string[];
 };
 
-const EmailsEditor = ({ container, initialList }: Props) => {
+type Editor = {
+  getEmailList: () => string[];
+  setEmailList: (emailList: string[]) => Action;
+  subscribeToEmailList: (fn: SubscribeToEmailList) => Unsubscribe;
+  close: () => Element | void;
+};
+
+const EmailsEditor = ({ container, initialList }: Props): Editor => {
   const middlewares: Middleware[] = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -43,7 +50,7 @@ const EmailsEditor = ({ container, initialList }: Props) => {
   let currentList: string[];
 
   return {
-    getEmailList: () => {
+    getEmailList: (): string[] => {
       const { list } = store.getState().email;
 
       return deepCopy(list);
@@ -60,7 +67,7 @@ const EmailsEditor = ({ container, initialList }: Props) => {
         callback(previousList, currentList);
       }
     }),
-    close: () => {
+    close: (): Element | void => {
       unmount(container, root);
     },
   };

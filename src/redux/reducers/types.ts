@@ -5,6 +5,8 @@ export type Action = {
 
 export type Dispatch = (action: Action) => any;
 
+export type Unsubscribe = () => void;
+
 export type EmailState = {
   list: string[];
 };
