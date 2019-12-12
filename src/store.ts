@@ -3,6 +3,23 @@ import { deepCopy } from './utils';
 
 const initialState = { list: [] };
 
+const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => ({
+  set: (target, property, value) => {
+    if (property === 'list') {
+      const previousList: string[] = target[property];
+      const currentList: string[] = value;
+
+      if (previousList !== currentList) {
+        callback(previousList, currentList);
+      }
+
+      target[property] = value;
+    }
+
+    return true;
+  },
+});
+
 const createStore = (
   maybeState: MaybeState = initialState,
   updateTrigger: () => void,
@@ -10,25 +27,10 @@ const createStore = (
   // The store's subscriptions work by chaining proxies. This works because
   // the shape of the state is the same across instances of `EmailEditor`.
   //
-  // We aren't using a library like React, so we can rely on magic re-rendering.
-  // Instead, we wrap the state in a proxy initially and then use that subscription to trigger re-rendering.
+  // We aren't using a library like React, so we can't rely on magic re-rendering.
+  // Instead, we wrap the state in a proxy initially and then use that handler to trigger re-rendering.
   // This works because the only stateful 'prop' we are passing around is the list from the store.
-  const handler: ProxyHandler<State> = {
-    set: (target, property, value) => {
-      if (property === 'list') {
-        const previousList: string[] = target[property];
-        const currentList: string[] = value;
-  
-        if (previousList !== currentList) {
-          updateTrigger();
-        }
-  
-        target[property] = value;
-      }
-
-      return true;
-    },
-  };
+  const handler = createHandler(updateTrigger);
   const state = new Proxy(<State>maybeState, handler);
 
   return {
@@ -66,22 +68,7 @@ const createStore = (
       return deepCopy(emailList);
     },
     subscribeToEmailList: function(callback: SubscriptionCallback): void {
-      const handler: ProxyHandler<State> = {
-        set: (target, property, value) => {
-          if (property === 'list') {
-            const previousList: string[] = target[property];
-            const currentList: string[] = value;
-      
-            if (previousList !== currentList) {
-              callback(previousList, currentList);
-            }
-      
-            target[property] = value;
-          }
-    
-          return true;
-        },
-      };
+      const handler = createHandler(callback);
       const state = new Proxy(this._state, handler);
   
       this._setState(state);
