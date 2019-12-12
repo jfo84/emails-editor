@@ -24,12 +24,10 @@ const createStore = (
   maybeState: MaybeState = initialState,
   updateTrigger: () => void,
 ): Store => {
-  // The store's subscriptions work by chaining proxies. This works because
-  // the shape of the state is the same across instances of `EmailEditor`.
-  //
-  // We aren't using a library like React, so we can't rely on magic re-rendering.
-  // Instead, we wrap the state in a proxy initially and then use that handler to trigger re-rendering.
-  // This works because the only stateful 'prop' we are passing around is the list from the store.
+  // The store's subscriptions work by chaining proxies. We aren't using a library like React,
+  // so we can't rely on magic re-rendering. Instead, we wrap the state in a proxy initially and
+  // then use that handler to trigger re-rendering. This works because the only stateful 'prop'
+  // we are passing around is the list from the store.
   const handler = createHandler(updateTrigger);
   const state = new Proxy(<State>maybeState, handler);
 
