@@ -27,7 +27,7 @@ const createStore = (
   _setState: function(newState: State): void {
     this._state = newState;
   },
-  _addEmail: function(email: string) {
+  _addEmail: function(email: string): void {
     const { list } = this._state;
 
     // Add element by index
