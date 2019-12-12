@@ -1,17 +1,17 @@
 import { h, Component } from 'preact';
-import { connect } from 'preact-redux';
 
 import { validateEmail } from '../utils';
-import { ReduxState, Dispatch } from '../redux/reducers/types';
-import * as constants from '../redux/constants';
+import { Store } from '../types';
 
 import './EmailsEditor.css';
 
-type Props = {
-  list: string[];
-  addEmail: (email: string) => void;
-  removeEmail: (index: number) => void;
-};
+// type Props = {
+//   list: string[];
+//   addEmail: (email: string) => void;
+//   removeEmail: (index: number) => void;
+// };
+
+type Props = { store: Store; };
 
 type State = { ephemeralEmail: string };
 
@@ -36,7 +36,7 @@ class EmailsEditor extends Component<Props, State> {
         const strippedEmail = (code === 'Comma')
           ? value.substring(0, value.length - 1)
           : value;
-        this.props.addEmail(strippedEmail);
+        this.props.store._addEmail(strippedEmail);
   
         this.setState({ ephemeralEmail: '' });
       }
@@ -50,20 +50,22 @@ class EmailsEditor extends Component<Props, State> {
       const emailListString = event.clipboardData!.getData('text/plain');
       const pastedEmails = emailListString.split(',').map(e => e.trim());
   
-      pastedEmails.forEach(e => this.props.addEmail(e));
+      pastedEmails.forEach(e => this.props.store._addEmail(e));
     }
   };
 
   handleBlur = (event: FocusEvent): void => {
     if (event.target instanceof HTMLInputElement) {
-      this.props.addEmail(event.target.value);
+      this.props.store._addEmail(event.target.value);
 
       this.setState({ ephemeralEmail: '' });
     }
   };
 
   render() {
-    const { list = [], removeEmail } = this.props;
+    const { store } = this.props;
+    const list = store.getEmailList();
+
     const { ephemeralEmail } = this.state;
   
     return (
@@ -78,7 +80,7 @@ class EmailsEditor extends Component<Props, State> {
               <div class={textClass}>{email}</div>
               <div
                 class='email-remove'
-                onClick={() => removeEmail(index)}
+                onClick={() => store._removeEmail(index)}
               ></div>
             </div>
           );
@@ -99,26 +101,15 @@ class EmailsEditor extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: ReduxState) => ({
-  list: state.email.list
-});
+// type OuterProps = { store: Store };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addEmail: (e: string) => {
-    if (e) dispatch({
-      type: constants.EMAIL_ADD,
-      payload: { email: e },
-    });
-  },
-  removeEmail: (i: number) => dispatch({
-    type: constants.EMAIL_REMOVE,
-    payload: { index: i },
-  }),
-});
+// const MapToProps = ({ store }: OuterProps): Element => {
+//   const list = store.getEmailList();
+//   const { _addEmail, _removeEmail } = store;
 
-const ConnectedEditor = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(EmailsEditor);
+//   return <EmailsEditor list={list} addEmail={_addEmail} removeEmail={_removeEmail} />;
+// };
 
-export default ConnectedEditor;
+// export default MapToProps(EmailsEditor);
+
+export default EmailsEditor;
