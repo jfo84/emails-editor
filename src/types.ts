@@ -9,12 +9,15 @@ export type SubscriptionCallback = (
   currentList: string[],
 ) => any;
 
-export type Store = {
+export type PublicStore = {
+  getEmailList: () => string[];
+  setEmailList: (emailList: string[]) => string[];
+  subscribeToEmailList: (cb: SubscriptionCallback) => void;
+}
+
+export type Store = PublicStore & {
   _state: State;
   _setState: (newState: State) => void;
   _removeEmail: (index: number) => void;
   _addEmail: (email: string) => void;
-  getEmailList: () => string[];
-  setEmailList: (emailList: string[]) => string[];
-  subscribeToEmailList: (cb: SubscriptionCallback) => void;
 };

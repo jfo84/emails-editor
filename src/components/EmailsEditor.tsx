@@ -5,12 +5,6 @@ import { Store } from '../types';
 
 import './EmailsEditor.css';
 
-// type Props = {
-//   list: string[];
-//   addEmail: (email: string) => void;
-//   removeEmail: (index: number) => void;
-// };
-
 type Props = { store: Store; };
 
 type State = { ephemeralEmail: string };
@@ -56,7 +50,7 @@ class EmailsEditor extends Component<Props, State> {
 
   handleBlur = (event: FocusEvent): void => {
     if (event.target instanceof HTMLInputElement) {
-      this.props.store._addEmail(event.target.value);
+      if (event.target.value) this.props.store._addEmail(event.target.value);
 
       this.setState({ ephemeralEmail: '' });
     }
@@ -100,16 +94,5 @@ class EmailsEditor extends Component<Props, State> {
     );
   }
 }
-
-// type OuterProps = { store: Store };
-
-// const MapToProps = ({ store }: OuterProps): Element => {
-//   const list = store.getEmailList();
-//   const { _addEmail, _removeEmail } = store;
-
-//   return <EmailsEditor list={list} addEmail={_addEmail} removeEmail={_removeEmail} />;
-// };
-
-// export default MapToProps(EmailsEditor);
 
 export default EmailsEditor;

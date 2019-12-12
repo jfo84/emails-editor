@@ -5,11 +5,6 @@ import { randomWord } from '../utils';
 
 import './EmailsButtons.css';
 
-// type Props = {
-//   emailCount: number;
-//   addEmail: (email: string) => void;
-// };
-
 type Props = { store: Store; };
 
 const EmailsButtons = ({ store }: Props) => {
@@ -47,16 +42,5 @@ const EmailsButtons = ({ store }: Props) => {
     </div>
   );
 }
-
-// type OuterProps = { store: Store };
-
-// const MapToProps = ({ store }: OuterProps): Element => {
-//   const count = store.getEmailList().length;
-//   const { _addEmail } = store;
-
-//   return <EmailsButtons emailCount={count} addEmail={_addEmail} />;
-// };
-
-// export default MapToProps(EmailsButtons);
 
 export default EmailsButtons;
