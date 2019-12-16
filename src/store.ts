@@ -1,18 +1,27 @@
 import { MaybeState, State, Store, SubscriptionCallback } from './types';
 import { deepCopy } from './utils';
 
-const initialState = { list: [] };
+const initialState = { list: [], ephemeralEmail: '' };
 
 const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => ({
   set: (target, property, value) => {
     if (property === 'list') {
-      const previousList: string[] = deepCopy(target[property]);
-      const currentList: string[] = value;
+      const previous: string[] = deepCopy(target[property]);
+      const current: string[] = value;
 
       target[property] = value;
 
-      if (previousList !== currentList) {
-        callback(previousList, currentList);
+      if (previous !== current) {
+        callback(previous, current);
+      }
+    } else if (property === 'ephemeralEmail') {
+      const previous: string = target[property];
+      const current: string = value;
+
+      target[property] = value;
+
+      if (previous !== current) {
+        callback(previous, current);
       }
     }
 
@@ -26,6 +35,9 @@ const createStore = (
   _state: <State>state,
   _setState: function(newState: State): void {
     this._state = newState;
+  },
+  _setEphemeralEmail: function(ephemeralEmail: string): void {
+    this._state.ephemeralEmail = ephemeralEmail;
   },
   _addEmail: function(email: string): void {
     const { list } = this._state;
@@ -57,7 +69,6 @@ const createStore = (
     return deepCopy(emailList);
   },
   subscribeToEmailList: function(callback: SubscriptionCallback): void {
-    console.log(`Subscribing with ${callback}`);
     const handler = createHandler(callback);
     const state = new Proxy(this._state, handler);
 

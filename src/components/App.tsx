@@ -1,5 +1,4 @@
-import { h } from 'preact';
-
+import { dom } from '../utils';
 import { Store } from '../types';
 
 import EmailsEditor from './EmailsEditor';

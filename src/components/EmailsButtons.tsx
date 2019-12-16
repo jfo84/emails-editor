@@ -1,7 +1,5 @@
-import { h, Component } from 'preact';
-
 import { Store } from '../types';
-import { randomWord } from '../utils';
+import { dom, randomWord } from '../utils';
 
 import './EmailsButtons.css';
 
