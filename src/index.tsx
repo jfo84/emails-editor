@@ -28,16 +28,9 @@ const EmailsEditor = ({ container, initialList }: Props): Store => {
   store.subscribeToEmailList(() => {
     previousRoot = root;
     root = rootElement();
-    container.replaceChild(root, previousRoot);
+    container.insertBefore(root, previousRoot);
+    container.removeChild(previousRoot);
   });
-
-  // let root = rootElement();
-  // container.appendChild(root);
-  // store.subscribeToEmailList(() => {
-  //   container.removeChild(root);
-  //   root = rootElement();
-  //   container.appendChild(root);
-  // });
 
   return store;
 };
