@@ -19,7 +19,7 @@ const EmailsEditor = ({ container, initialList }: Props): PublicStore => {
   // The store's subscriptions work by chaining proxies on the store's state.
   // We aren't using a library like React, so we can't rely on magic re-rendering.
   // Instead, we subscribe internally and then use that handler to trigger re-rendering.
-  // This works because the only stateful 'props' we are passing around are the list and email from the store.
+  // This works because the only 'stateful' prop we are passing around is the list from the store.
   const rootElement = () => <App store={store}/>;
 
   let root = rootElement();

@@ -14,15 +14,6 @@ const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => (
       if (previous !== current) {
         callback(previous, current);
       }
-    } else if (property === 'ephemeralEmail') {
-      const previous: string = target[property];
-      const current: string = value;
-
-      target[property] = value;
-
-      if (previous !== current) {
-        callback(previous, current);
-      }
     }
 
     return true;

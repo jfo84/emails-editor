@@ -76,7 +76,7 @@ const EmailsEditor = ({ store }: Props) => {
         onChange={handleChange}
         onKeyUp={handleKeyUp}
         onPaste={handlePaste}
-        onBlur={handleBlur}
+        // onBlur={handleBlur}
       />
     </div>
   );
