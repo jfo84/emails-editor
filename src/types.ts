@@ -16,7 +16,6 @@ export type Store = {
   _setEphemeralEmail: (ephemeralEmail: string) => void;
   _removeEmail: (index: number) => void;
   _addEmail: (email: string) => void;
-  _addEphemeralEmail: () => void;
   getEmailList: () => string[];
   setEmailList: (emailList: string[]) => string[];
   subscribeToEmailList: (cb: SubscriptionCallback) => void;
