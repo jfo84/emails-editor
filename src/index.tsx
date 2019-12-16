@@ -14,7 +14,7 @@ type Props = {
 };
 
 const EmailsEditor = ({ container, initialList }: Props): Store => {
-  const state: MaybeState = initialList ? { list: initialList, ephemeralEmail: '' } : null;
+  const state: MaybeState = initialList ? { list: initialList, currentEmail: '' } : null;
   const store: Store = createStore(state);
   // The store's subscriptions work by chaining proxies on the store's state.
   // We aren't using a library like React, so we can't rely on magic re-rendering.

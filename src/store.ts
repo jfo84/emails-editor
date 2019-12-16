@@ -1,7 +1,7 @@
 import { MaybeState, State, Store, SubscriptionCallback } from './types';
 import { deepCopy } from './utils';
 
-const initialState = { list: [], ephemeralEmail: '' };
+const initialState = { list: [], currentEmail: '' };
 
 const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => ({
   set: (target, property, value) => {
@@ -25,8 +25,8 @@ const createStore = (
   _setState: function(newState: State): void {
     this._state = newState;
   },
-  _setEphemeralEmail: function(ephemeralEmail: string): void {
-    this._state.ephemeralEmail = ephemeralEmail;
+  _setCurrentEmail: function(currentEmail: string): void {
+    this._state.currentEmail = currentEmail;
   },
   _addEmail: function(email: string): void {
     const { list } = this._state;

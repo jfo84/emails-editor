@@ -7,11 +7,11 @@ type Props = { store: Store; };
 
 const EmailsEditor = ({ store }: Props) => {
   const list = store.getEmailList();
-  const { ephemeralEmail } = store._state;
+  const { currentEmail } = store._state;
 
-  const handleChange = (event: Event): void => {
+  const handleInput = (event: Event): void => {
     if (event.target instanceof HTMLInputElement) {
-      store._setEphemeralEmail(event.target.value);
+      store._setCurrentEmail(event.target.value);
     }
   };
 
@@ -26,7 +26,7 @@ const EmailsEditor = ({ store }: Props) => {
           ? value.substring(0, value.length - 1)
           : value;
         store._addEmail(strippedEmail);
-        store._setEphemeralEmail('');
+        store._setCurrentEmail('');
       }
     }
   };
@@ -47,7 +47,7 @@ const EmailsEditor = ({ store }: Props) => {
       if (event.target.value === '') return;
 
       store._addEmail(event.target.value);
-      store._setEphemeralEmail('');
+      store._setCurrentEmail('');
     }
   };
 
@@ -74,8 +74,8 @@ const EmailsEditor = ({ store }: Props) => {
         spellcheck={true}
         autofocus={true}
         placeholder='add more people...'
-        value={ephemeralEmail}
-        onChange={handleChange}
+        value={currentEmail}
+        onInput={handleInput}
         onKeyUp={handleKeyUp}
         onPaste={handlePaste}
         onBlur={handleBlur}
