@@ -32,9 +32,9 @@ const EmailsEditor = ({ store }: Props) => {
   };
 
   const handlePaste = (event: ClipboardEvent): void => {
-    event.preventDefault();
-
     if (event.target instanceof HTMLInputElement) {
+      event.preventDefault();
+
       const emailListString = event.clipboardData!.getData('text/plain');
       const pastedEmails = emailListString.split(',').map(e => e.trim());
   
@@ -44,8 +44,9 @@ const EmailsEditor = ({ store }: Props) => {
 
   const handleBlur = (event: FocusEvent): void => {
     if (event.target instanceof HTMLInputElement) {
-      if (event.target.value) store._addEmail(event.target.value);
+      if (event.target.value === '') return;
 
+      store._addEmail(event.target.value);
       store._setEphemeralEmail('');
     }
   };
@@ -71,12 +72,13 @@ const EmailsEditor = ({ store }: Props) => {
         type='email'
         class='email-input'
         spellcheck={true}
+        autofocus={true}
         placeholder='add more people...'
         value={ephemeralEmail}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
         onPaste={handlePaste}
-        // onBlur={handleBlur}
+        onBlur={handleBlur}
       />
     </div>
   );

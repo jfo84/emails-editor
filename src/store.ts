@@ -11,9 +11,7 @@ const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => (
 
       target[property] = value;
 
-      if (previous !== current) {
-        callback(previous, current);
-      }
+      if (previous !== current) callback(previous, current);
     }
 
     return true;

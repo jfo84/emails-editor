@@ -1,4 +1,4 @@
-import { MaybeState, Store, PublicStore } from './types';
+import { MaybeState, Store } from './types';
 
 import App from './components/App';
 import createStore from './store';
@@ -13,7 +13,7 @@ type Props = {
   initialList: string[];
 };
 
-const EmailsEditor = ({ container, initialList }: Props): PublicStore => {
+const EmailsEditor = ({ container, initialList }: Props): Store => {
   const state: MaybeState = initialList ? { list: initialList, ephemeralEmail: '' } : null;
   const store: Store = createStore(state);
   // The store's subscriptions work by chaining proxies on the store's state.
@@ -31,13 +31,15 @@ const EmailsEditor = ({ container, initialList }: Props): PublicStore => {
     container.replaceChild(root, previousRoot);
   });
 
-  const {
-    _removeEmail,
-    _addEmail,
-    ...publicStore
-  } = store;
+  // let root = rootElement();
+  // container.appendChild(root);
+  // store.subscribeToEmailList(() => {
+  //   container.removeChild(root);
+  //   root = rootElement();
+  //   container.appendChild(root);
+  // });
 
-  return publicStore;
+  return store;
 };
 
 window.EmailsEditor = EmailsEditor;
