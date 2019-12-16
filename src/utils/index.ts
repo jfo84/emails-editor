@@ -21,7 +21,7 @@ export const dom = (
   tag: Tag,
   attributes: Attributes,
   ...children: Element[]
-): Element | void => {
+): TagFunction | Element | void => {
   if (!tag) return;
   if (typeof tag === 'function') return tag(attributes);
 
