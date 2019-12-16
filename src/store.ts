@@ -11,7 +11,11 @@ const createHandler = (callback: SubscriptionCallback): ProxyHandler<State> => (
 
       target[property] = value;
 
-      if (previous !== current) callback(previous, current);
+      if (previous !== current) {
+        callback(previous, current);
+      }
+    } else {
+      target[<string>property] = value;
     }
 
     return true;
@@ -27,6 +31,14 @@ const createStore = (
   },
   _setCurrentEmail: function(currentEmail: string): void {
     this._state.currentEmail = currentEmail;
+  },
+  _addCurrentEmail: function(): void {
+    const ce = this._state.currentEmail;
+    this._setCurrentEmail('');
+
+    if (!ce) return;
+
+    this._addEmail(ce);
   },
   _addEmail: function(email: string): void {
     const { list } = this._state;

@@ -1,6 +1,7 @@
 export type State = {
   list: string[];
   currentEmail: string;
+  [key: string]: string | string[];
 };
 
 export type MaybeState = State | null;
@@ -16,6 +17,7 @@ export type Store = {
   _setCurrentEmail: (currentEmail: string) => void;
   _removeEmail: (index: number) => void;
   _addEmail: (email: string) => void;
+  _addCurrentEmail: () => void;
   getEmailList: () => string[];
   setEmailList: (emailList: string[]) => string[];
   subscribeToEmailList: (cb: SubscriptionCallback) => void;

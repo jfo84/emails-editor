@@ -1,5 +1,6 @@
   // Borrowed from random-words which borrowed from xkcd password generator which borrowed it from wherever
-import wordList from './words.json';
+  // @ts-ignore
+import wordList from './words';
 
 export const randomWord = (): string => wordList[Math.floor(Math.random() * wordList.length)];
 
