@@ -10,16 +10,14 @@ export type SubscriptionCallback = (
   currentState: string | string[],
 ) => any;
 
-export type PublicStore = {
+export type Store = {
   _state: State;
   _setState: (newState: State) => void;
-  getEmailList: () => string[];
-  setEmailList: (emailList: string[]) => string[];
-  subscribeToEmailList: (cb: SubscriptionCallback) => void;
-}
-
-export type Store = PublicStore & {
   _setEphemeralEmail: (ephemeralEmail: string) => void;
   _removeEmail: (index: number) => void;
   _addEmail: (email: string) => void;
+  _addEphemeralEmail: () => void;
+  getEmailList: () => string[];
+  setEmailList: (emailList: string[]) => string[];
+  subscribeToEmailList: (cb: SubscriptionCallback) => void;
 };
