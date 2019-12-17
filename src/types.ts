@@ -1,3 +1,10 @@
+export type TagFunction = (attributes: {}) => TagFunction | Element | void;
+export type Tag = string | TagFunction;
+export type Attributes = {
+  class?: string;
+  [key: string]: any;
+};
+
 export type State = {
   list: string[];
   currentEmail: string;

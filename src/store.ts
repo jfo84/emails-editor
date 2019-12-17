@@ -33,17 +33,16 @@ const createStore = (
     this._state.currentEmail = currentEmail;
   },
   _addCurrentEmail: function(): void {
-    const ce = this._state.currentEmail;
+    const { currentEmail } = this._state;
     this._setCurrentEmail('');
 
-    if (!ce) return;
+    if (!currentEmail) return;
 
-    this._addEmail(ce);
+    this._addEmail(currentEmail);
   },
   _addEmail: function(email: string): void {
     const { list } = this._state;
 
-    // Add element by index
     const newList = [ ...list, email ];
   
     this.setEmailList(newList);

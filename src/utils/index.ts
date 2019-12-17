@@ -1,5 +1,6 @@
-  // Borrowed from random-words which borrowed from xkcd password generator which borrowed it from wherever
-  // @ts-ignore
+import { TagFunction, Tag, Attributes } from '../types';
+// Borrowed from random-words which borrowed from xkcd password generator which borrowed it from wherever
+// @ts-ignore
 import wordList from './words';
 
 export const randomWord = (): string => wordList[Math.floor(Math.random() * wordList.length)];
@@ -10,13 +11,6 @@ const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 export const validateEmail = (email: string): boolean => emailRegex.test(email.toLowerCase());
 
 const eventHandlerRegex = /on([A-Z])\w+/;
-
-type TagFunction = (attributes: {}) => TagFunction | Element | void;
-type Tag = string | TagFunction;
-type Attributes = {
-  class?: string;
-  [key: string]: any;
-};
 
 export const dom = (
   tag: Tag,
